@@ -32,25 +32,22 @@ module.exports = {
           }
         },
         {
-            test:/\.(s*)css$/,
-            use: [
-              {
-                // After all CSS loaders we use plugin to do his work.
-                // It gets all transformed CSS and extracts it into separate
-                // single bundled file
-                loader: MiniCssExtractPlugin.loader
-              }, 
-              {
-                loader: "css-loader"
-              },
-              {
-                loader: "sass-loader",
-                options: {
-                  implementation: require("sass")
-                }
-              }
-            ]
-         }
+          test: /\.css$/,
+          use: [
+            {
+              // After all CSS loaders we use plugin to do his work.
+              // It gets all transformed CSS and extracts it into separate
+              // single bundled file
+              loader: MiniCssExtractPlugin.loader
+            }, 
+            {
+              loader: "css-loader"
+            },
+            {
+              loader: "postcss-loader"
+            },
+          ]
+        }
     ]
   },
 
