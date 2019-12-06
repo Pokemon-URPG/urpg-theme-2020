@@ -35,27 +35,39 @@ $sections = [
 	],
 	'battles' => [
 		'label' => 'Battles',
-		'icon' => 'dashicons-editor-unlink'
+		'icon' => 'dashicons-editor-unlink',
+		'section_staff_label' => 'Senior Referee',
+		'section_staff_slug' => 'senior-referee'
 	],
 	'contests' => [
 		'label' => 'Contests',
-		'icon' => 'dashicons-buddicons-groups'
+		'icon' => 'dashicons-buddicons-groups',
+		'section_staff_label' => 'Chief Judge',
+		'section_staff_slug' => 'chief-judge'
 	],
 	'stories' => [
 		'label' => 'Stories',
-		'icon' => 'dashicons-book-alt'
+		'icon' => 'dashicons-book-alt',
+		'section_staff_label' => 'Lead Grader',
+		'section_staff_slug' => 'lead-grader'
 	],
 	'art' => [
 		'label' => 'Art',
-		'icon' => 'dashicons-admin-customizer'
+		'icon' => 'dashicons-admin-customizer',
+		'section_staff_label' => 'Expert Curator',
+		'section_staff_slug' => 'expert-curator'
 	],
-	'national-park' => [
+	'national_park' => [
 		'label' => 'National Park',
-		'icon' => 'dashicons-admin-site-alt2'
+		'icon' => 'dashicons-admin-site-alt2',
+		'section_staff_label' => 'Elite Ranger',
+		'section_staff_slug' => 'elite-ranger'
 	],
 	'morphic' => [
 		'label' => 'Morphic',
-		'icon' => 'dashicons-palmtree'
+		'icon' => 'dashicons-palmtree',
+		'section_staff_label' => 'Elder Arbiter',
+		'section_staff_slug' => 'elder-arbiter'
 	],
 ];
 
@@ -68,17 +80,41 @@ foreach ($sections as $section => $value) {
 		'show_in_rest' => true,
 		'menu_icon' => $value['icon'],
 		'menu_position' => $position,
+		'taxonomies' => array('category'),
 		'supports' => array(
 			'title',
 			'editor',
 			'revisions',
 			'thumbnail'
-		)
+		),
 	]);
-}
+	
+	add_role( $value['section_staff_slug'], __($value['section_staff_label']), [
+		'read',
+		'read_' . $section,
+		'read_private_' . $section,
+		'edit_' . $section,
+		'edit_others_' . $section,
+		'edit_published_' . $section,
+		'publish_' . $section,
+		'delete_others_' . $section,
+		'delete_private_' . $section,
+		'delete_published_' . $section,
+	]);
+};
 
+// Removes default user roles
+add_action('admin_menu', function() {
+    global $wp_roles;
+    $roles_to_remove = array('subscriber', 'contributor', 'author', 'editor');
+    foreach ($roles_to_remove as $role) {
+        if (isset($wp_roles->roles[$role])) {
+            $wp_roles->remove_role($role);
+        }
+    }
+});
 
-// Removes Pages
+// Removes Posts & Pages
 add_action('admin_init', function(){
 	remove_menu_page('edit.php?post_type=page');
 	remove_menu_page('edit.php');
