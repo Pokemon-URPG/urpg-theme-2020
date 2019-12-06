@@ -1,4 +1,25 @@
 body {
-    @apply flex;
-    border: 2px solid #000;
+    @apply font-sans leading-tight;
+}
+
+.container {
+    @apply m-auto;
+    width: 90%;
+    max-width: 1500px;
+}
+
+.btn {
+    @apply px-12 py-4 bg-blue text-white font-bold;
+
+    &.black {
+        @apply bg-grey;
+    }
+}
+
+p {
+    @apply mb-2;
+}
+
+hr {
+    @apply border-blue my-8;
 }

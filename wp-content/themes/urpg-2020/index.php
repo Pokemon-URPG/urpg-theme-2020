@@ -1,6 +1,9 @@
 <?php get_header(); ?>
-<div class="main">
+
+<main>
     <div class="container">
+        
     </div>
-</div>
+</main>
+
 <?php get_footer(); ?>

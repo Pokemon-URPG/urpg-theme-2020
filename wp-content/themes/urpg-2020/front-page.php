@@ -1,6 +1,11 @@
 <?php get_header(); ?>
-<div class="main">
+
+<main>
     <div class="container">
+        test text
+        <hr>
+        testjskldfj
     </div>
-</div>
+</main>
+
 <?php get_footer(); ?>

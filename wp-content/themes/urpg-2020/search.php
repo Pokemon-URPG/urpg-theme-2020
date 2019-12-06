@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="main">
+<main>
     <div class="container">
     <?php if ( have_posts() ) : ?>
         <h1 class="search-title"><?php printf( __( 'Search Results for: %s' ), get_search_query() ); ?></h1>
@@ -37,5 +37,5 @@
 		<?php endif;
 		?>
     </div>
-</div>
+</main>
 <?php get_footer(); ?>
