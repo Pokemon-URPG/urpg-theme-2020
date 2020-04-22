@@ -1,10 +1,7 @@
+@import "./tailwind.css";
+
 /* Fonts */
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,600,800&display=swap');
-
-/* Tailwinds  */
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
 
 /* Theme Styles */
 @import "./base.css";
